@@ -39,14 +39,16 @@ Requires [pandoc](https://pandoc.org) (`brew install pandoc`).
 
 ```bash
 cd scrape
-python3 build_epub.py                       # all days -> epub_build/book.html (+ epub.css)
+python3 build_epub.py                       # all days -> epub_build/{book.html, epub.css, metadata.yaml}
 cd ..
 pandoc scrape/epub_build/book.html -o "Harvard Classics - January.epub" \
-  --metadata title="Harvard Classics — January" \
-  --metadata author="Charles W. Eliot (ed.) — Fifteen Minutes a Day" \
-  --metadata lang=en --toc --toc-depth=2 --split-level=1 \
+  --metadata-file=scrape/epub_build/metadata.yaml \
+  --toc --toc-depth=2 --split-level=1 \
   --css=scrape/epub_build/epub.css
 ```
+
+Title (`Harvard Classics <Month>`) and author (`Charles W. Eliot`) live in `build_epub.py` and are
+written to `metadata.yaml`, so they stay consistent and update with the month automatically.
 
 A different month: scrape its guide page to `scrape/source/`, re-run `parse_guide.py`, then rebuild.
 

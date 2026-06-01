@@ -11,6 +11,9 @@ HERE = Path(__file__).parent
 OUT = HERE / 'epub_build'
 OUT.mkdir(exist_ok=True)
 MONTH = 'January'
+# EPUB metadata (title self-updates per month; plain title, no em dash; author = editor only)
+TITLE = f'Harvard Classics {MONTH}'
+AUTHOR = 'Charles W. Eliot'
 
 # Claude-written, Wikipedia-checked author/work blurbs (trusted HTML; may use <em>).
 BG_PATH = HERE / 'background.json'
@@ -117,10 +120,13 @@ def main():
         h, m = day_html(days_all[n])
         body.append(h); metas.append(m)
     doc = ('<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8">'
-           '<title>Fifteen Minutes a Day</title></head><body>\n'
+           f'<title>{H.escape(TITLE)}</title></head><body>\n'
            + '\n'.join(body) + '\n</body></html>\n')
     (OUT / 'book.html').write_text(doc, encoding='utf-8')
     (OUT / 'epub.css').write_text(CSS, encoding='utf-8')
+    # pandoc reads this via --metadata-file (keeps title/author out of the shell command)
+    (OUT / 'metadata.yaml').write_text(
+        f'title: "{TITLE}"\nauthor: "{AUTHOR}"\nlang: en\n', encoding='utf-8')
     print('days:', want)
     for m in metas:
         print(f"  day {m['day']:>2}  {m['words']:>5}w  {len(m['sources'])} src  {m['title'][:40]}")
