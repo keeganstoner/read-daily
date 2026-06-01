@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-"""Emit semantic HTML for selected days (one <h1> chapter each) for pandoc -> EPUB.
+"""Emit semantic HTML for a month (one <h1> chapter per day) for pandoc -> EPUB.
 
-Usage: python3 build_epub.py 1 3 7 12 31   ->  writes epub_build/book.html + epub.css
+Usage:
+  python3 build_epub.py                 # all days of January (default)
+  python3 build_epub.py june            # all days of June
+  python3 build_epub.py june 1 5 10     # only June days 1, 5, 10
+Reads {month}_parsed.json, background_{month}.json, sources_{month}.json;
+writes epub_build/{book.html, epub.css, metadata.yaml}.
 """
 import json, re, sys, html as H
 from pathlib import Path
@@ -10,22 +15,15 @@ import assemble
 HERE = Path(__file__).parent
 OUT = HERE / 'epub_build'
 OUT.mkdir(exist_ok=True)
-MONTH = 'January'
-# EPUB metadata (title self-updates per month; plain title, no em dash; author = editor only)
-TITLE = f'Harvard Classics {MONTH}'
-AUTHOR = 'Charles W. Eliot'
+AUTHOR = 'Charles W. Eliot'      # EPUB author (the editor); the title is per-month
 
-# Claude-written, Wikipedia-checked author/work blurbs (trusted HTML; may use <em>).
-BG_PATH = HERE / 'background.json'
-BG = json.load(open(BG_PATH, encoding='utf-8')) if BG_PATH.exists() else {}
 
-# Curated citation fields per day: {author, work, written}. Vol/pages come from the guide.
-SRC_PATH = HERE / 'sources.json'
-SRC = json.load(open(SRC_PATH, encoding='utf-8')) if SRC_PATH.exists() else {}
+def load_json(path):
+    return json.load(open(path, encoding='utf-8')) if path.exists() else {}
 
 
 def vol_of(read_line):
-    m = re.search(r'Vol\.?\s*(\d+)', read_line)
+    m = re.search(r'vol\.?\s*(\d+)', read_line, re.I)
     return m.group(1) if m else '?'
 
 
@@ -61,13 +59,13 @@ def text_to_html(text):
     return '\n'.join(out)
 
 
-def day_html(day):
+def day_html(day, month, bg, src):
     n, title = day['day'], day['title']
     text, sources, note = assemble.assemble_day(day)
     vol, pages = vol_of(day['read_line']), range_str(day['page_ranges'])
-    parts = [f'<h1>{MONTH} {n} — {H.escape(title)}</h1>']
+    parts = [f'<h1>{month} {n} — {H.escape(title)}</h1>']
     # citation line under the title (centered, light): author · work (year) / HC vol & pages
-    cite = SRC.get(str(n))
+    cite = src.get(str(n))
     if cite:
         yr = f' ({H.escape(cite["written"])})' if cite.get('written') else ''
         work = f'<em>{H.escape(cite["work"])}</em>'
@@ -76,7 +74,7 @@ def day_html(day):
         parts.append(f'<div class="cite"><p>{byline}{yr}</p></div>')
     # author/work headnote (roman, labeled) — distinct from the compiler's italic note.
     # blurb is trusted authored HTML, inserted raw so <em> work-titles survive.
-    blurb = BG.get(str(n))
+    blurb = bg.get(str(n))
     if blurb:
         parts.append(f'<div class="headnote"><p><span class="hn-label">Background</span> — {blurb}</p></div>')
     # preface in a div (pandoc keeps div classes) AND <em> (guarantees italics)
@@ -113,21 +111,32 @@ hr + p { text-indent: 0; }
 
 
 def main():
-    days_all = {d['day']: d for d in json.load(open(HERE / 'january_parsed.json'))}
-    want = [int(x) for x in sys.argv[1:]] or sorted(days_all)
+    args = sys.argv[1:]
+    month = 'january'
+    if args and not args[0].isdigit():
+        month = args.pop(0).lower()
+    want_filter = [int(x) for x in args]
+    disp = month.capitalize()
+    title = f'Harvard Classics {disp}'
+
+    days_all = {d['day']: d for d in json.load(open(HERE / f'{month}_parsed.json', encoding='utf-8'))}
+    bg = load_json(HERE / f'background_{month}.json')
+    src = load_json(HERE / f'sources_{month}.json')
+
+    want = want_filter or sorted(days_all)
     body, metas = [], []
     for n in want:
-        h, m = day_html(days_all[n])
+        h, m = day_html(days_all[n], disp, bg, src)
         body.append(h); metas.append(m)
     doc = ('<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8">'
-           f'<title>{H.escape(TITLE)}</title></head><body>\n'
+           f'<title>{H.escape(title)}</title></head><body>\n'
            + '\n'.join(body) + '\n</body></html>\n')
     (OUT / 'book.html').write_text(doc, encoding='utf-8')
     (OUT / 'epub.css').write_text(CSS, encoding='utf-8')
     # pandoc reads this via --metadata-file (keeps title/author out of the shell command)
     (OUT / 'metadata.yaml').write_text(
-        f'title: "{TITLE}"\nauthor: "{AUTHOR}"\nlang: en\n', encoding='utf-8')
-    print('days:', want)
+        f'title: "{title}"\nauthor: "{AUTHOR}"\nlang: en\n', encoding='utf-8')
+    print(f'month: {month} | days:', want)
     for m in metas:
         print(f"  day {m['day']:>2}  {m['words']:>5}w  {len(m['sources'])} src  {m['title'][:40]}")
     print('wrote', OUT / 'book.html')

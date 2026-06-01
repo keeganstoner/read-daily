@@ -24,7 +24,7 @@ def norm_url(href):
     m = re.search(r'(?:web\.archive\.org/web/\d+/)?(?:https?://)?(?:www\.)?bartleby\.com(/[^\s"]*)', href)
     if not m:
         return None
-    path = m.group(1)
+    path = m.group(1).split('#', 1)[0]   # drop #paragraph fragment (points within the page)
     return 'https://www.bartleby.com' + path
 
 
@@ -58,7 +58,7 @@ def parse_ranges(text):
 def parse_anchors(read_html):
     """Return ordered list of (url, anchor_text) for bartleby text-page links whose
     visible text looks like a page reference (contains digits / p. / pp.)."""
-    out = []
+    page_refs, work_links = [], []
     for m in re.finditer(r'<a\s+[^>]*href="([^"]+)"[^>]*>(.*?)</a>', read_html, re.S | re.I):
         href, inner = m.group(1), strip_tags(m.group(2)).strip()
         url = norm_url(href)
@@ -67,26 +67,38 @@ def parse_anchors(read_html):
         path = url[len('https://www.bartleby.com'):]
         if not is_text_page(path):
             continue
-        # anchor text must reference a page (digits, optionally p./pp.)
         if re.search(r'\d', inner) and (re.search(r'p+\.', inner) or re.fullmatch(r'[\d\s,\-–—]+', inner)):
-            out.append((url, inner))
-    # dedupe preserve order
+            page_refs.append((url, inner))          # a "pp. 79-85"-style page link
+            continue
+        # fallback candidate: a work-title link. Skip author/bio links (followed by
+        # a possessive "'s") and the "(more)" note link.
+        after = read_html[m.end():m.end() + 2]
+        if inner.lower() == 'more' or not inner or after[:1] in ("'", "’"):
+            continue
+        work_links.append((url, inner))
+    chosen = page_refs or work_links               # page links preferred; titles as fallback
     seen, ded = set(), []
-    for u, t in out:
+    for u, t in chosen:
         if u not in seen:
             seen.add(u); ded.append((u, t))
     return ded
 
 
-def parse_month(html_path):
+def parse_month(html_path, month='january'):
     raw = Path(html_path).read_text(encoding='latin-1')
-    # region between the month <h2> and the closing nav <hr>/image
-    start = raw.find('<h2>JANUARY</h2>')
+    # region between the month <h2> and the trailing illustration (<img src="month.jpg">)
+    start = raw.find(f'<h2>{month.upper()}</h2>')
     if start < 0:
         start = raw.find('<h2>')
-    end = raw.find('<p align="center">\n<img', start)
-    if end < 0:
-        end = raw.find('<hr>', raw.find('Channing') - 400) if 'Channing' in raw else len(raw)
+    img = raw.find(f'src="{month.lower()}.jpg"', start)
+    if img > start:
+        end = raw.rfind('<p align="center"', start, img)
+        if end < 0:
+            end = img
+    else:                       # fallbacks: bottom nav, then Channing epigraph, then EOF
+        end = raw.find('[<a href="/inspiration/fifteen_minutes_a_day/index.shtml">Introduction', start + 1)
+        if end < start:
+            end = raw.find('<hr>', raw.find('Channing') - 400) if 'Channing' in raw else len(raw)
     region = raw[start:end]
 
     # find day boundaries: <b>N Title</b>
@@ -134,7 +146,9 @@ def parse_month(html_path):
 
 
 if __name__ == '__main__':
-    src = sys.argv[1] if len(sys.argv) > 1 else 'january_raw.html'
-    days = parse_month(src)
+    # usage: parse_guide.py <source.html> <month>
+    src = sys.argv[1] if len(sys.argv) > 1 else 'source/january.html'
+    month = sys.argv[2].lower() if len(sys.argv) > 2 else 'january'
+    days = parse_month(src, month)
     print(json.dumps(days, indent=2, ensure_ascii=False))
-    sys.stderr.write(f'\nParsed {len(days)} days\n')
+    sys.stderr.write(f'\nParsed {len(days)} days for {month}\n')

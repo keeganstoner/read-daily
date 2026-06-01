@@ -142,7 +142,9 @@ def assemble_day(day):
     note = []
     segs = []
     all_sources = []
-    if not ranges or not urls:
+    if not urls:
+        return '', [], ['NO SOURCE URL — check the guide entry']
+    if not ranges:
         # no parseable range: just take the first url's block
         p = get_page(urls[0])
         return p['text'], [urls[0]], ['no range; single block']
