@@ -8,9 +8,7 @@ by the guide's short context note in *italics*.
 
 ## Output
 
-- **`Harvard Classics - January.epub`** — the ebook (31 chapters). Send-to-Kindle accepts EPUB directly.
-- **`january/january-NN.txt`** — the same readings as plain text, one file per day, plus `index.json`
-  (per-day metadata: source URLs, word counts, how each reading was assembled).
+**`Harvard Classics - January.epub`** — the ebook (31 chapters). Send-to-Kindle accepts EPUB directly.
 
 ## How it works (`scrape/`)
 
@@ -20,7 +18,6 @@ by the guide's short context note in *italics*.
 | `fetcher.py`     | fetch + cache live bartleby pages (`cache/`); extract clean text, page markers, nav links |
 | `legacy.py`      | Wayback (2006) fallback for pages dead on live bartleby (`cache_wb/`) |
 | `assemble.py`    | build each day's text: exact page-trim where page markers exist, else stitch forward to the guide's length; handles multi-part and poem readings |
-| `generate.py`    | write the plain-text `january/` files |
 | `build_epub.py`  | emit semantic HTML (one `<h1>` chapter per day) for pandoc |
 
 Source guide HTML is kept in `scrape/source/`; fetched pages are cached, so rebuilds need no network
@@ -41,7 +38,6 @@ pandoc scrape/epub_build/book.html -o "Harvard Classics - January.epub" \
   --css=scrape/epub_build/epub.css
 ```
 
-Plain-text instead of EPUB: `python3 scrape/generate.py`.
 A different month: scrape its guide page to `scrape/source/`, re-run `parse_guide.py`, then rebuild.
 
 ## Status

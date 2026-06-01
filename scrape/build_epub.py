@@ -6,12 +6,20 @@ Usage: python3 build_epub.py 1 3 7 12 31   ->  writes epub_build/book.html + epu
 import json, re, sys, html as H
 from pathlib import Path
 import assemble
-from generate import vol_of, range_str
 
 HERE = Path(__file__).parent
 OUT = HERE / 'epub_build'
 OUT.mkdir(exist_ok=True)
 MONTH = 'January'
+
+
+def vol_of(read_line):
+    m = re.search(r'Vol\.?\s*(\d+)', read_line)
+    return m.group(1) if m else '?'
+
+
+def range_str(ranges):
+    return ', '.join(f'{a}–{b}' for a, b in ranges) if ranges else '?'
 
 
 def preface_groups(preamble):
