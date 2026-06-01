@@ -13,6 +13,10 @@ Each chapter is one calendar day, laid out as:
    2006 Wayback Machine fallback for pages now dead on the live site). A footer gives the
    Harvard Classics volume and page range.
 
+Each month also opens with a **Foreword**: the epigraph poem printed atop the guide page, in
+italics. The whole poem is used when it's short; when it runs long (like January's *Eve of St.
+Agnes*) just the guide's snippet is shown.
+
 ## Output
 
 One EPUB per month, e.g. **`Harvard Classics - January.epub`** (31 chapters). Send-to-Kindle
@@ -26,7 +30,7 @@ accepts EPUB directly.
 | `fetcher.py`     | fetch + cache live bartleby pages (`cache/`); extract clean text, page markers, nav links |
 | `legacy.py`      | Wayback (2006) fallback for pages dead on live bartleby (`cache_wb/`) |
 | `assemble.py`    | build each day's text: exact page-trim where page markers exist, else stitch forward to the guide's length; handles multi-part and poem readings |
-| `build_epub.py`  | emit semantic HTML (one `<h1>` chapter per day) for pandoc, injecting the citation line + background headnote + styling |
+| `build_epub.py`  | emit semantic HTML (the month's foreword + one `<h1>` chapter per day) for pandoc, injecting the citation line + background headnote + styling |
 
 Per month, two editable data files drive the editorial apparatus (both Claude-written,
 Wikipedia-checked): `background_<month>.json` (per-day author/work blurbs; work titles use `<em>`)
@@ -59,7 +63,7 @@ written to `metadata.yaml`, so they stay consistent and update with the month au
 
 ## Status
 
-- ✅ January, June, July — full months with citation + background headnotes
+- ✅ January, June, July — full months with foreword + citation + background headnotes
 - ⏳ Remaining months — same pipeline; each needs a `background_<month>.json` + `sources_<month>.json`
 - ⏳ Poems as each day's second sub-chapter (not yet added)
 - ℹ️ A few prose days run longer than the guide's page range: those volumes have no embedded page

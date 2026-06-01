@@ -10,12 +10,14 @@ writes epub_build/{book.html, epub.css, metadata.yaml}.
 """
 import json, re, sys, html as H
 from pathlib import Path
-import assemble
+import assemble, fetcher
+import parse_guide as PG
 
 HERE = Path(__file__).parent
 OUT = HERE / 'epub_build'
 OUT.mkdir(exist_ok=True)
 AUTHOR = 'Charles W. Eliot'      # EPUB author (the editor); the title is per-month
+FOREWORD_MAX_WORDS = 1000        # full epigraph poem if this short, else the guide's snippet
 
 
 def load_json(path):
@@ -59,6 +61,40 @@ def text_to_html(text):
     return '\n'.join(out)
 
 
+def foreword_html(month):
+    """The month's opening epigraph poem as an italic 'Foreword' section.
+    Follows the guide's link and uses the whole poem if short; otherwise the
+    snippet printed on the guide page."""
+    src_file = HERE / 'source' / f'{month}.html'
+    if not src_file.exists():
+        return ''
+    raw = src_file.read_text(encoding='latin-1')
+    s = raw.find(f'<h2>{month.upper()}</h2>')
+    if s < 0:
+        return ''
+    epi = raw[s + len(f'<h2>{month.upper()}</h2>'):raw.find('<b>', s)]
+    lines = re.split(r'(?i)<br\s*/?>', epi)
+    attr_idx = next((i for i, l in enumerate(lines) if 'bartleby.com' in l), len(lines) - 1)
+    snippet = [t for t in (PG.strip_tags(l).strip() for l in lines[:attr_idx]) if t]
+    author = PG.strip_tags(lines[attr_idx]).split('(')[0].strip().title()
+    url = None
+    for m in re.finditer(r'href="([^"]+)"', epi):
+        u = PG.norm_url(m.group(1))
+        if u and PG.is_text_page(u[len('https://www.bartleby.com'):]):
+            url = u
+            break
+    body = snippet
+    if url:
+        full = fetcher.clean_text(fetcher.content_block(fetcher.fetch(url)))
+        if full and len(full.split()) <= FOREWORD_MAX_WORDS:
+            body = [l for l in full.split('\n') if l.strip()]
+    if not body:
+        return ''
+    ps = '\n'.join(f'<p>{H.escape(l)}</p>' for l in body)
+    attr = f'<p class="attribution">— {H.escape(author)}</p>' if author else ''
+    return f'<h1>Foreword</h1>\n<div class="foreword">\n{ps}\n{attr}\n</div>'
+
+
 def day_html(day, month, bg, src):
     n, title = day['day'], day['title']
     text, sources, note = assemble.assemble_day(day)
@@ -96,6 +132,9 @@ body { line-height: 1.5; margin: 0 1em; }
 h1 { page-break-before: always; text-align: center; font-size: 1.5em;
      margin: 1.5em 0 1em; line-height: 1.25; }
 p { margin: 0; text-indent: 1.4em; }
+div.foreword { margin: 1.5em 1.5em; }
+div.foreword p { text-align: center; font-style: italic; text-indent: 0; margin: 0.15em 0; }
+div.foreword p.attribution { margin-top: 1.3em; font-size: 0.9em; }
 div.cite { text-align: center; font-size: 0.8em; color: #666; margin: 0.2em 0 1.1em; }
 div.cite p { text-indent: 0; margin: 0; line-height: 1.4; }
 div.headnote { font-size: 0.92em; margin: 0.5em 1.2em 0.8em; }
@@ -128,6 +167,10 @@ def main():
     for n in want:
         h, m = day_html(days_all[n], disp, bg, src)
         body.append(h); metas.append(m)
+    if not want_filter:                      # full month -> open with the epigraph foreword
+        fw = foreword_html(month)
+        if fw:
+            body.insert(0, fw)
     doc = ('<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8">'
            f'<title>{H.escape(title)}</title></head><body>\n'
            + '\n'.join(body) + '\n</body></html>\n')
