@@ -16,6 +16,10 @@ MONTH = 'January'
 BG_PATH = HERE / 'background.json'
 BG = json.load(open(BG_PATH, encoding='utf-8')) if BG_PATH.exists() else {}
 
+# Curated citation fields per day: {author, work, written}. Vol/pages come from the guide.
+SRC_PATH = HERE / 'sources.json'
+SRC = json.load(open(SRC_PATH, encoding='utf-8')) if SRC_PATH.exists() else {}
+
 
 def vol_of(read_line):
     m = re.search(r'Vol\.?\s*(\d+)', read_line)
@@ -57,7 +61,16 @@ def text_to_html(text):
 def day_html(day):
     n, title = day['day'], day['title']
     text, sources, note = assemble.assemble_day(day)
+    vol, pages = vol_of(day['read_line']), range_str(day['page_ranges'])
     parts = [f'<h1>{MONTH} {n} — {H.escape(title)}</h1>']
+    # citation line under the title (centered, light): author · work (year) / HC vol & pages
+    cite = SRC.get(str(n))
+    if cite:
+        yr = f' ({H.escape(cite["written"])})' if cite.get('written') else ''
+        work = f'<em>{H.escape(cite["work"])}</em>'
+        author = cite.get('author', '')
+        byline = f'{H.escape(author)} · {work}' if author else work
+        parts.append(f'<div class="cite"><p>{byline}{yr}</p></div>')
     # author/work headnote (roman, labeled) — distinct from the compiler's italic note.
     # blurb is trusted authored HTML, inserted raw so <em> work-titles survive.
     blurb = BG.get(str(n))
@@ -70,8 +83,9 @@ def day_html(day):
     parts.append('</div>')
     parts.append('<hr/>')
     parts.append(text_to_html(text))
-    src = f'— The Harvard Classics, Vol. {vol_of(day["read_line"])}, pp. {range_str(day["page_ranges"])} (via bartleby.com)'
-    parts.append(f'<div class="source"><p><em>{H.escape(src)}</em></p></div>')
+    # bottom: the Harvard Classics volume + page range
+    bottom = f'— The Harvard Classics, Vol. {vol}, pp. {pages}'
+    parts.append(f'<div class="source"><p><em>{H.escape(bottom)}</em></p></div>')
     return '\n'.join(parts), {'day': n, 'title': title, 'words': len(text.split()),
                               'sources': sources, 'note': note}
 
@@ -81,6 +95,8 @@ body { line-height: 1.5; margin: 0 1em; }
 h1 { page-break-before: always; text-align: center; font-size: 1.5em;
      margin: 1.5em 0 1em; line-height: 1.25; }
 p { margin: 0; text-indent: 1.4em; }
+div.cite { text-align: center; font-size: 0.8em; color: #666; margin: 0.2em 0 1.1em; }
+div.cite p { text-indent: 0; margin: 0; line-height: 1.4; }
 div.headnote { font-size: 0.92em; margin: 0.5em 1.2em 0.8em; }
 div.headnote p { text-indent: 0; margin: 0; }
 span.hn-label { font-weight: bold; font-variant: small-caps; }

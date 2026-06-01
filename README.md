@@ -4,12 +4,14 @@ A daily-reading ebook built from the Harvard Classics **"Fifteen Minutes a Day"*
 ([mensetmanus.net](https://www.mensetmanus.net/inspiration/fifteen_minutes_a_day/january.shtml)).
 Each chapter is one calendar day, laid out as:
 
-1. **Background headnote** — a short author/work orientation (era, place, what they're known for,
+1. **Citation** — a centered, light byline under the title: *author · work (year written)*.
+2. **Background headnote** — a short author/work orientation (era, place, what they're known for,
    and what the document is) in upright roman with a small-caps **Background** label. It sets up the
    reading without giving away its argument or message.
-2. **Compiler's note** — the guide's original one-line context, in *italics*.
-3. **The reading** — the day's recommended text, pulled as clean prose from bartleby.com (with a
-   2006 Wayback Machine fallback for pages now dead on the live site).
+3. **Compiler's note** — the guide's original one-line context, in *italics*.
+4. **The reading** — the day's recommended text, pulled as clean prose from bartleby.com (with a
+   2006 Wayback Machine fallback for pages now dead on the live site). A footer gives the
+   Harvard Classics volume and page range.
 
 ## Output
 
@@ -23,11 +25,13 @@ Each chapter is one calendar day, laid out as:
 | `fetcher.py`     | fetch + cache live bartleby pages (`cache/`); extract clean text, page markers, nav links |
 | `legacy.py`      | Wayback (2006) fallback for pages dead on live bartleby (`cache_wb/`) |
 | `assemble.py`    | build each day's text: exact page-trim where page markers exist, else stitch forward to the guide's length; handles multi-part and poem readings |
-| `build_epub.py`  | emit semantic HTML (one `<h1>` chapter per day) for pandoc, injecting the background headnote + styling |
+| `build_epub.py`  | emit semantic HTML (one `<h1>` chapter per day) for pandoc, injecting the citation line + background headnote + styling |
 
-`background.json` holds the per-day author/work blurbs (Claude-written, Wikipedia-checked; edit
-freely — work titles use `<em>`). Source guide HTML is kept in `scrape/source/`; fetched pages are
-cached, so rebuilds need no network unless you clear the caches.
+Two editable data files drive the editorial apparatus (both Claude-written, Wikipedia-checked):
+`background.json` (per-day author/work blurbs; work titles use `<em>`) and `sources.json`
+(per-day `{author, work, written}` for the citation line — leave `author` empty for anonymous
+works; volume/pages come from the guide). Source guide HTML is kept in `scrape/source/`; fetched
+pages are cached, so rebuilds need no network unless you clear the caches.
 
 ## Rebuild
 
