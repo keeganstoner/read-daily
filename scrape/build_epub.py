@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+"""Emit semantic HTML for selected days (one <h1> chapter each) for pandoc -> EPUB.
+
+Usage: python3 build_epub.py 1 3 7 12 31   ->  writes epub_build/book.html + epub.css
+"""
+import json, re, sys, html as H
+from pathlib import Path
+import assemble
+from generate import vol_of, range_str
+
+HERE = Path(__file__).parent
+OUT = HERE / 'epub_build'
+OUT.mkdir(exist_ok=True)
+MONTH = 'January'
+
+
+def preface_groups(preamble):
+    groups, cur = [], []
+    for pl in preamble:
+        pl = pl.strip()
+        if re.match(r'^\(.*\)\.?$', pl):
+            if cur:
+                groups.append(' '.join(cur)); cur = []
+            groups.append(pl)
+        else:
+            cur.append(pl)
+    if cur:
+        groups.append(' '.join(cur))
+    return groups
+
+
+def text_to_html(text):
+    """Clean reading text -> <p> blocks. A blank line separates blocks; a single
+    newline inside a block (e.g. the virtue list) becomes <br/>."""
+    out = []
+    for block in re.split(r'\n{2,}', text.strip()):
+        block = block.strip()
+        if not block:
+            continue
+        esc = H.escape(block).replace('\n', '<br/>\n')
+        out.append(f'<p>{esc}</p>')
+    return '\n'.join(out)
+
+
+def day_html(day):
+    n, title = day['day'], day['title']
+    text, sources, note = assemble.assemble_day(day)
+    parts = [f'<h1>{MONTH} {n} — {H.escape(title)}</h1>']
+    # preface in a div (pandoc keeps div classes) AND <em> (guarantees italics)
+    parts.append('<div class="preface">')
+    for g in preface_groups(day['preamble']):
+        parts.append(f'<p><em>{H.escape(g)}</em></p>')
+    parts.append('</div>')
+    parts.append('<hr/>')
+    parts.append(text_to_html(text))
+    src = f'— The Harvard Classics, Vol. {vol_of(day["read_line"])}, pp. {range_str(day["page_ranges"])} (via bartleby.com)'
+    parts.append(f'<div class="source"><p><em>{H.escape(src)}</em></p></div>')
+    return '\n'.join(parts), {'day': n, 'title': title, 'words': len(text.split()),
+                              'sources': sources, 'note': note}
+
+
+CSS = """\
+body { line-height: 1.5; margin: 0 1em; }
+h1 { page-break-before: always; text-align: center; font-size: 1.5em;
+     margin: 1.5em 0 1em; line-height: 1.25; }
+p { margin: 0; text-indent: 1.4em; }
+div.preface p { font-style: italic; text-indent: 0; margin: 0.4em 1.2em; color: #333; }
+hr { border: 0; border-top: 1px solid #999; width: 30%; margin: 1.2em auto; }
+div.source p { text-indent: 0; font-style: italic; font-size: 0.85em;
+               color: #555; margin-top: 1.6em; text-align: right; }
+/* first paragraph after the rule: no indent (book style) */
+hr + p { text-indent: 0; }
+"""
+
+
+def main():
+    days_all = {d['day']: d for d in json.load(open(HERE / 'january_parsed.json'))}
+    want = [int(x) for x in sys.argv[1:]] or sorted(days_all)
+    body, metas = [], []
+    for n in want:
+        h, m = day_html(days_all[n])
+        body.append(h); metas.append(m)
+    doc = ('<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8">'
+           '<title>Fifteen Minutes a Day</title></head><body>\n'
+           + '\n'.join(body) + '\n</body></html>\n')
+    (OUT / 'book.html').write_text(doc, encoding='utf-8')
+    (OUT / 'epub.css').write_text(CSS, encoding='utf-8')
+    print('days:', want)
+    for m in metas:
+        print(f"  day {m['day']:>2}  {m['words']:>5}w  {len(m['sources'])} src  {m['title'][:40]}")
+    print('wrote', OUT / 'book.html')
+
+
+if __name__ == '__main__':
+    main()

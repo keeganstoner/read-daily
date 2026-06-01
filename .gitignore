@@ -1,0 +1,10 @@
+# generated build intermediates (recreated by build_epub.py)
+scrape/epub_build/
+
+# python
+__pycache__/
+*.pyc
+
+# tooling / os
+.claude/
+.DS_Store

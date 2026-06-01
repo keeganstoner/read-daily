@@ -1,0 +1,633 @@
+# Day 8 — Trying the Patience of Job
+
+*God was pleased with the piety of Job, but Satan accredited the piety to Job's prosperity and happiness. So a trial was made. See how each succeeding affliction visited on Job shook the depths of his nature, and how he survived.*
+
+---
+
+THERE was a man in the land of Uz, whose name was Job; and that man was perfect and upright, and one that feared God, and turned away from evil.
+
+And there were born unto him seven sons and three daughters.
+
+His substance also was seven thousand sheep, and three thousand camels, and five hundred yoke of oxen, and five hundred she-asses, and a very great household; so that this man was the greatest of all the children of the east.
+
+And his sons went and held a feast in the house of each one upon his day; and they sent and called for their three sisters to eat and to drink with them.
+
+And it was so, when the days of their feasting were gone about, that Job sent and sanctified them, and rose up early in the morning, and offered burnt-offerings according to the number of them all: for Job said, It may be that my sons have sinned, and renounced God in their hearts. Thus did Job continually.
+
+Now it came to pass on the day when the sons of God came to present themselves before Jehovah, that Satan also came among them.
+
+And Jehovah said unto Satan, Whence comest thou? Then Satan answered Jehovah, and said, from going to and fro in the earth, and from walking up and down in it.
+
+And Jehovah said unto Satan, Hast thou considered my servant Job? for there is none like him in the earth, a perfect and upright man, one that feareth God, and turneth away from evil.
+
+Then Satan answered Jehovah, and said, Doth Job fear God for nought?
+
+Hast not thou made a hedge about him, and about his house, and about all that he hath, on every side? thou hast blessed the work of his hands, and his substance is increased in the land.
+
+But put forth thy hand now, and touch all that he hath, and he will renounce thee to thy face.
+
+And Jehovah said unto Satan, Behold, all that he hath is in thy power; only upon himself put not forth thy hand. So Satan went forth from the presence of Jehovah.
+
+And it fell on a day when his sons and his daughters were eating and drinking wine in their eldest brother’s house,
+
+that there came a messenger unto Job, and said, The oxen were plowing, and the asses feeding beside them;
+
+and the Sabeans fell upon them, and took them away: yea, they have slain the servants with the edge of the sword; and I only am escaped alone to tell thee.
+
+While he was yet speaking, there came also another, and said, The fire of God is fallen from heaven, and hath burned up the sheep and the servants, and consumed them; and I only am escaped alone to tell thee.
+
+While he was yet speaking, there came also another, and said, The Chaldeans made three bands, and fell upon the camels, and have taken them away, yea, and slain the servants with the edge of the sword; and I only am escaped alone to tell thee.
+
+While he was yet speaking, there came also another, and said, Thy sons and thy daughters were eating and drinking wine in their eldest brother’s house;
+
+and, behold, there came a great wind from the wilderness, and smote the four corners of the house, and it fell upon the young men, and they are dead; and I only am escaped alone to tell thee.
+
+Then Job arose, and rent his robe, and shaved his head, and fell down upon the ground, and worshipped;
+
+and he said, Naked came I out of my mother’s womb, and naked shall I return thither: Jehovah gave, and Jehovah hath taken away; blessed be the name of Jehovah.
+
+In all this Job sinned not, nor charged God foolishly.
+
+AGAIN it came to pass on the day when the sons of God came to present themselves before Jehovah, that Satan came also among them to present himself before Jehovah.
+
+And Jehovah said unto Satan, From whence comest thou? And Satan answered Jehovah, and said, From going to and fro in the earth, and from walking up and down in it.
+
+And Jehovah said unto Satan, Hast thou considered my servant Job? for there is none like him in the earth, a perfect and an upright man, one that feareth God, and turneth away from evil: and he still holdeth fast his integrity, although thou movedst me against him, to destroy him without cause.
+
+And Satan answered Jehovah, and said, Skin for skin, yea, all that a man hath will he give for his life.
+
+But put forth thy hand now, and touch his bone and his flesh, and he will renounce thee to thy face.
+
+And Jehovah said unto Satan, Behold, he is in thy hand; only spare his life.
+
+So Satan went forth from the presence of Jehovah, and smote Job with sore boils from the sole of his foot unto his crown.
+
+And he took him a potsherd to scrape himself therewith; and he sat among the ashes.
+
+Then said his wife unto him, Dost thou still hold fast thine integrity? renounce God, and die.
+
+But he said unto her, Thou speakest as one of the foolish women speaketh. What? shall we receive good at the hand of God, and shall we not receive evil? In all this did not Job sin with his lips.
+
+Now when Job’s three friends heard of all this evil that was come upon him, they came every one from his own place: Eliphaz the Temanite, and Bildad the Shuhite, and Zophar the Naamathite; and they made an appointment together to come to bemoan him and to comfort him.
+
+And when they lifted up their eyes afar off, and knew him not, they lifted up their voice, and wept; and they rent every one his robe, and sprinkled dust upon their heads toward heaven.
+
+So they sat down with him upon the ground seven days and seven nights, and none spake a word unto him: for they saw that his grief was very great.
+
+AFTER this opened Job his mouth, and cursed his day.
+
+And Job answered and said:
+
+Let the day perish wherein I was born,
+And the night which said, There is a man-child conceived.
+
+Let that day be darkness;
+Let not God from above seek for it,
+Neither let the light shine upon it.
+
+Let darkness and the shadow of death claim it for their own;
+Let a cloud dwell upon it;
+Let all that maketh black the day terrify it.
+
+As for that night, let thick darkness seize upon it:
+Let it not rejoice among the days of the year;
+Let it not come into the number of the months.
+
+Lo, let that night be barren;
+Let no joyful voice come therein.
+
+Let them curse it that curse the day,
+Who are ready to rouse up leviathan.
+
+Let the stars of the twilight thereof be dark:
+Let it look for light, but have none;
+Neither let it behold the eyelids of the morning:
+
+Because it shut not up the doors of my mother’s womb,
+Nor hid trouble from mine eyes.
+
+Why died I not from the womb?
+Why did I not give up the ghost when my mother bare me?
+
+Why did the knees receive me?
+Or why the breasts, that I should suck?
+
+For now should I have lain down and been quiet;
+I should have slept; then had I been at rest,
+
+With kings and counsellors of the earth,
+Who built up waste places for themselves;
+
+Or with princes that had gold,
+Who filled their houses with silver:
+
+Or as a hidden untimely birth I had not been,
+As infants that never saw light.
+
+There the wicked cease from troubling;
+And there the weary are at rest,
+
+There the prisoners are at ease together;
+They hear not the voice of the taskmaster.
+
+The small and the great are there:
+And the servant is free from his master.
+
+Wherefore is light given to him that is in misery,
+And life unto the bitter in soul;
+
+Who long for death, but it cometh not,
+And dig for it more than for hid treasures;
+
+Who rejoice exceedingly,
+And are glad, when they can find the grave?
+
+Why is light given to a man whose way is hid,
+And whom God hath hedged in?
+
+For my sighing cometh before I eat,
+And my groanings are poured out like water.
+
+For the thing which I fear cometh upon me,
+And that which I am afraid of cometh unto me.
+
+I am not at ease, neither am I quiet, neither have I rest;
+But trouble cometh.
+
+THEN answered Eliphaz the Temanite, and said,
+
+If one assay to commune with thee, wilt thou be grieved?
+But who can withhold himself from speaking?
+
+Behold, thou hast instructed many,
+And thou hast strengthened the weak hands.
+
+Thy words have upholden him that was falling,
+And thou hast made firm the feeble knees.
+
+But now it is come unto thee, and thou faintest;
+It toucheth thee, and thou art troubled.
+
+Is not thy fear of God thy confidence,
+And the integrity of thy ways thy hope?
+
+Remember, I pray thee, who ever perished, being innocent?
+Or where were the upright cut off?
+
+According as I have seen, they that plow iniquity,
+And sow trouble, reap the same.
+
+By the breath of God they perish,
+And by the blast of his anger are they consumed.
+
+The roaring of the lion, and the voice of the fierce lion,
+And the teeth of the young lions, are broken.
+
+The old lion perisheth for lack of prey,
+And the whelps of the lioness are scattered abroad.
+
+Now a thing was secretly brought to me,
+And mine ear received a whisper thereof.
+
+In thoughts from the visions of the night,
+When deep sleep falleth on men,
+
+Fear came upon me, and trembling,
+Which made all my bones to shake.
+
+Then a spirit passed before my face;
+The hair of my flesh stood up.
+
+It stood still, but I could not discern the appearance thereof;
+A form was before mine eyes:
+There was silence, and I heard a voice, saying,
+
+Shall mortal man be more just than God?
+Shall a man be more pure than his Maker?
+
+Behold, he putteth no trust in his servants;
+And his angels he chargeth with folly:
+
+How much more them that dwell in houses of clay,
+Whose foundation is in the dust,
+Who are crushed before the moth!
+
+Betwixt morning and evening they are destroyed:
+They perish for ever without any regarding it.
+
+Is not their tent-cord plucked up within them?
+They die, and that without wisdom.
+
+CALL now; is there any that will answer thee?
+And to which of the holy ones wilt thou turn?
+
+For vexation killeth the foolish man,
+And jealousy slayeth the silly one.
+
+I have seen the foolish taking root:
+But suddenly I cursed his habitation.
+
+His children are far from safety,
+And they are crushed in the gate,
+Neither is there any to deliver them:
+
+Whose harvest the hungry eateth up,
+And taketh it even out of the thorns;
+And the snare gapeth for their substance.
+
+For affliction cometh not forth from the dust,
+Neither doth trouble spring out of the ground;
+
+But man is born unto trouble,
+As the sparks fly upward.
+
+But as for me, I would seek unto God,
+And unto God would I commit my cause;
+
+Who doeth great things and unsearchable,
+Marvellous things without number:
+
+Who giveth rain upon the earth,
+And sendeth waters upon the fields;
+
+So that he setteth up on high those that are low,
+And those that mourn are exalted to safety.
+
+He frustrateth the devices of the crafty,
+So that their hands cannot perform their enterprise.
+
+He taketh the wise in their own craftiness;
+And the counsel of the cunning is carried headlong.
+
+They meet with darkness in the day-time,
+And grope at noonday as in the night.
+
+But he saveth from the sword of their mouth,
+Even the needy from the hand of the mighty.
+
+So the poor hath hope,
+And iniquity stoppeth her mouth.
+
+Behold, happy is the man whom God correcteth:
+Therefore despise not thou the chastening of the Almighty.
+
+For he maketh sore, and bindeth up;
+He woundeth, and his hands make whole.
+
+He will deliver thee in six troubles;
+Yea, in seven there shall no evil touch thee.
+
+In famine he will redeem thee from death;
+And in war from the power of the sword.
+
+Thou shalt be hid from the scourge of the tongue;
+Neither shalt thou be afraid of destruction when it cometh.
+
+At destruction and dearth thou shalt laugh;
+Neither shalt thou be afraid of the beasts of the earth.
+
+For thou shalt be in league with the stones of the field;
+And the beasts of the field shall be at peace with thee.
+
+And thou shalt know that thy tent is in peace;
+And thou shalt visit thy fold, and shalt miss nothing.
+
+Thou shalt know also that thy seed shall be great,
+And thine offspring as the grass of the earth.
+
+Thou shalt come to thy grave in a full age,
+Like as a shock of grain cometh in its season.
+
+Lo this, we have searched it, so it is;
+Hear it, and know thou it for thy good.
+
+THEN Job answered and said,
+
+Oh that my vexation were but weighed,
+And all my calamity laid in the balances!
+
+For now it would be heavier than the sand of the seas:
+Therefore have my words been rash.
+
+For the arrows of the Almighty are within me,
+The poison whereof my spirit drinketh up:
+The terrors of God do set themselves in array against me.
+
+Doth the wild ass bray when he hath grass?
+Or loweth the ox over his fodder?
+
+Can that which hath no savor be eaten without salt?
+Or is there any taste in the white of an egg?
+
+My soul refuseth to touch them;
+They are as loathsome food to me.
+
+Oh that I might have my request;
+And that God would grant me the thing that I long for!
+
+Even that it would please God to crush me;
+That he would let loose his hand, and cut me off!
+
+And be it still my consolation,
+Yea, let me exult in pain that spareth not,
+That I have not denied the words of the Holy One.
+
+What is my strength, that I should wait?
+And what is mine end, that I should be patient?
+
+Is my strength the strength of stones?
+Or is my flesh of brass?
+
+Is it not that I have no help in me,
+And that wisdom is driven quite from me?
+
+To him that is ready to faint kindness should be showed from his friend;
+Even to him that forsaketh the fear of the Almighty.
+
+My brethren have dealt deceitfully as a brook,
+As the channel of brooks that pass away;
+
+Which are black by reason of the ice,
+And wherein the snow hideth itself:
+
+What time they wax warm, they vanish;
+When it is hot, they are consumed out of their place.
+
+The caravans that travel by the way of them turn aside;
+They go up into the waste, and perish.
+
+The caravans of Tema looked,
+The companies of Sheba waited for them.
+
+They were put to shame because they had hoped;
+They came thither, and were confounded.
+
+For now ye are nothing;
+Ye see a terror, and are afraid.
+
+Did I say, Give unto me?
+Or, Offer a present for me of your substance?
+
+Or, Deliver me from the adversary’s hand?
+Or, Redeem me from the hand of the oppressors?
+
+Teach me, and I will hold my peace;
+And cause me to understand wherein I have erred.
+
+How forcible are words of uprightness!
+But your reproof, what doth it reprove?
+
+Do ye think to reprove words,
+Seeing that the speeches of one that is desperate are as wind?
+
+Yea, ye would cast lots upon the fatherless,
+And make merchandise of your friend.
+
+Now therefore be pleased to look upon me;
+For surely I shall not lie to your face.
+
+Return, I pray you, let there be no injustice;
+Yea, return again, my cause is righteous.
+
+Is there injustice on my tongue?
+Cannot my taste discern mischievous things?
+
+IS there not a warfare to man upon earth?
+And are not his days like the days of a hireling?
+
+As a servant that earnestly desireth the shadow,
+And as a hireling that looketh for his wages:
+
+So am I made to possess months of misery,
+And wearisome nights are appointed to me.
+
+When I lie down, I say,
+When shall I arise, and the night be gone?
+And I am full of tossings to and fro unto the dawning of the day.
+
+My flesh is clothed with worms and clods of dust;
+My skin closeth up, and breaketh out afresh.
+
+My days are swifter than a weaver’s shuttle,
+And are spent without hope.
+
+Oh remember that my life is a breath:
+Mine eye shall no more see good.
+
+The eye of him that seeth me shall behold me no more;
+Thine eyes shall be upon me, but I shall not be.
+
+As the cloud is consumed and vanisheth away,
+So he that goeth down to Sheol shall come up no more.
+
+He shall return no more to his house,
+Neither shall his place know him any more.
+
+Therefore I will not refrain my mouth:
+I will speak in the anguish of my spirit;
+I will complain in the bitterness of my soul.
+
+Am I a sea, or a sea-monster,
+That thou settest a watch over me?
+
+When I say, My bed shall comfort me,
+My couch shall ease my complaint;
+
+Then thou scarest me with dreams,
+And terrifiest me through visions:
+
+So that my soul chooseth strangling,
+And death rather than these my bones.
+
+I loathe my life; I would not live alway:
+Let me alone; for my days are vanity.
+
+What is man, that thou shouldest magnify him,
+And that thou shouldest set thy mind upon him,
+
+And that thou shouldest visit him every morning,
+And try him every moment?
+
+How long wilt thou not look away from me,
+Nor let me alone till I swallow down my spittle?
+
+If I have sinned, what do I unto thee, O thou watcher of men?
+Why hast thou set me as a mark for thee,
+So that I am a burden to myself?
+
+And why dost thou not pardon my transgression, and take away mine iniquity?
+For now shall I lie down in the dust;
+And thou wilt seek me diligently, but I shall not be.
+
+THEN answered Bildad the Shuhite, and said,
+
+How long wilt thou speak these things?
+And how long shall the words of thy mouth be like a mighty wind?
+
+Doth God pervert justice?
+Or doth the Almighty pervert righteousness?
+
+If thy children have sinned against him,
+And he hath delivered them into the hand of their transgression;
+
+If thou wouldest seek diligently unto God,
+And make thy supplication to the Almighty;
+
+If thou wert pure and upright:
+Surely now he would awake for thee,
+And make the habitation of thy righteousness prosperous.
+
+And though thy beginning was small,
+Yet thy latter end would greatly increase.
+
+For inquire, I pray thee, of the former age,
+And apply thyself to that which their fathers have searched out
+
+(For we are but of yesterday, and know nothing,
+Because our days upon earth are a shadow);
+
+Shall not they teach thee, and tell thee,
+And utter words out of their heart?
+
+Can the rush grow up without mire?
+Can the flag grow without water?
+
+Whilst it is yet in its greenness, and not cut down,
+It withereth before any other herb.
+
+So are the paths of all that forget God;
+And the hope of the godless man shall perish:
+
+Whose confidence shall break in sunder,
+And whose trust is a spider’s web.
+
+He shall lean upon his house, but it shall not stand:
+He shall hold fast thereby, but it shall not endure.
+
+He is green before the sun,
+And his shoots go forth over his garden.
+
+His roots are wrapped about the stone-heap,
+He beholdeth the place of stones.
+
+If he be destroyed from his place,
+Then it shall deny him, saying, I have not seen thee.
+
+Behold, this is the joy of his way;
+And out of the earth shall others spring.
+
+Behold, God will not cast away a perfect man,
+Neither will he uphold the evil-doers.
+
+He will yet fill thy mouth with laughter,
+And thy lips with shouting.
+
+They that hate thee shall be clothed with shame;
+And the tent of the wicked shall be no more.
+
+THEN Job answered and said,
+
+Of a truth I know that it is so:
+But how can man be just with God?
+
+If he be pleased to contend with him,
+He cannot answer him one of a thousand.
+
+He is wise in heart, and mighty in strength:
+Who hath hardened himself against him, and prospered?—
+
+Him that removeth the mountains, and they know it not,
+When he overturneth them in his anger;
+
+That shaketh the earth out of its place,
+And the pillars thereof tremble;
+
+That commandeth the sun, and it riseth not,
+And sealeth up the stars;
+
+That alone stretcheth out the heavens,
+And treadeth upon the waves of the sea;
+
+That maketh the Bear, Orion, and the Pleiades,
+And the chambers of the south;
+
+That doeth great things past finding out,
+Yea, marvellous things without number.
+
+Lo, he goeth by me, and I see him not:
+He passeth on also, but I perceive him not.
+
+Behold, he seizeth the prey, who can hinder him?
+Who will say unto him, What doest thou?
+
+God will not withdraw his anger;
+The helpers of Rahab do stoop under him.
+
+How much less shall I answer him,
+And choose out my words to reason with him?
+
+Whom, though I were righteous, yet would I not answer;
+I would make supplication to my judge.
+
+If I had called, and he had answered me,
+Yet would I not believe that he hearkened unto my voice.
+
+For he breaketh me with a tempest,
+And multiplieth my wounds without cause.
+
+He will not suffer me to take my breath,
+But filleth me with bitterness.
+
+If we speak of strength, lo, he is mighty!
+And if of justice, Who, saith he, will summon me?
+
+Though I be righteous, mine own mouth shall condemn me:
+Though I be perfect, it shall prove me perverse.
+
+I am perfect; I regard not myself;
+I despise my life.
+
+It is all one; therefore I say,
+He destroyeth the perfect and the wicked.
+
+If the scourge slay suddenly,
+He will mock at the trial of the innocent.
+
+The earth is given into the hand of the wicked;
+He covereth the faces of the judges thereof:
+If it be not he, who then is it?
+
+Now my days are swifter than a post:
+They flee away, they see no good.
+
+They are passed away as the swift ships;
+As the eagle that swoopeth on the prey.
+
+If I say, I will forget my complaint,
+I will put off my sad countenance, and be of good cheer;
+
+I am afraid of all my sorrows,
+I know that thou wilt not hold me innocent.
+
+I shall be condemned;
+Why then do I labor in vain?
+
+If I wash myself with snow water,
+And make my hands never so clean;
+
+Yet wilt thou plunge me in the ditch,
+And mine own clothes shall abhor me.
+
+For he is not a man, as I am, that I should answer him,
+That we should come together in judgment.
+
+There is no umpire betwixt us,
+That might lay his hand upon us both.
+
+Let him take his rod away from me,
+And let not his terror make me afraid:
+
+Then would I speak, and not fear him;
+For I am not so in myself.
+
+— *The Harvard Classics, Vol. 44, pp. 71–87 (via bartleby.com)*
