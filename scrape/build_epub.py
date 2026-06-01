@@ -12,6 +12,10 @@ OUT = HERE / 'epub_build'
 OUT.mkdir(exist_ok=True)
 MONTH = 'January'
 
+# Claude-written, Wikipedia-checked author/work blurbs (trusted HTML; may use <em>).
+BG_PATH = HERE / 'background.json'
+BG = json.load(open(BG_PATH, encoding='utf-8')) if BG_PATH.exists() else {}
+
 
 def vol_of(read_line):
     m = re.search(r'Vol\.?\s*(\d+)', read_line)
@@ -54,6 +58,11 @@ def day_html(day):
     n, title = day['day'], day['title']
     text, sources, note = assemble.assemble_day(day)
     parts = [f'<h1>{MONTH} {n} — {H.escape(title)}</h1>']
+    # author/work headnote (roman, labeled) — distinct from the compiler's italic note.
+    # blurb is trusted authored HTML, inserted raw so <em> work-titles survive.
+    blurb = BG.get(str(n))
+    if blurb:
+        parts.append(f'<div class="headnote"><p><span class="hn-label">Background</span> — {blurb}</p></div>')
     # preface in a div (pandoc keeps div classes) AND <em> (guarantees italics)
     parts.append('<div class="preface">')
     for g in preface_groups(day['preamble']):
@@ -72,6 +81,9 @@ body { line-height: 1.5; margin: 0 1em; }
 h1 { page-break-before: always; text-align: center; font-size: 1.5em;
      margin: 1.5em 0 1em; line-height: 1.25; }
 p { margin: 0; text-indent: 1.4em; }
+div.headnote { font-size: 0.92em; margin: 0.5em 1.2em 0.8em; }
+div.headnote p { text-indent: 0; margin: 0; }
+span.hn-label { font-weight: bold; font-variant: small-caps; }
 div.preface p { font-style: italic; text-indent: 0; margin: 0.4em 1.2em; color: #333; }
 hr { border: 0; border-top: 1px solid #999; width: 30%; margin: 1.2em auto; }
 div.source p { text-indent: 0; font-style: italic; font-size: 0.85em;
