@@ -13,9 +13,9 @@ Each chapter is one calendar day, laid out as:
    2006 Wayback Machine fallback for pages now dead on the live site). A footer gives the
    Harvard Classics volume and page range.
 
-Each month also opens with a **Foreword**: the epigraph poem printed atop the guide page, in
-italics. The whole poem is used when it's short; when it runs long (like January's *Eve of St.
-Agnes*) just the guide's snippet is shown.
+Each month also opens with an **untitled italic frontispiece** — the epigraph poem printed atop the
+guide page (its own page, no heading). The whole poem is used when it's short; when it runs long
+(like January's *Eve of St. Agnes*) just the guide's snippet is shown.
 
 ## Output
 

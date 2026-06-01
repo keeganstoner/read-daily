@@ -92,7 +92,9 @@ def foreword_html(month):
         return ''
     ps = '\n'.join(f'<p>{H.escape(l)}</p>' for l in body)
     attr = f'<p class="attribution">— {H.escape(author)}</p>' if author else ''
-    return f'<h1>Foreword</h1>\n<div class="foreword">\n{ps}\n{attr}\n</div>'
+    # empty unlisted heading: gives the section its own page without a title or TOC entry
+    # (and stops pandoc from injecting the book title onto this leading content)
+    return f'<h1 class="unlisted"></h1>\n<div class="foreword">\n{ps}\n{attr}\n</div>'
 
 
 def day_html(day, month, bg, src):
@@ -132,7 +134,8 @@ body { line-height: 1.5; margin: 0 1em; }
 h1 { page-break-before: always; text-align: center; font-size: 1.5em;
      margin: 1.5em 0 1em; line-height: 1.25; }
 p { margin: 0; text-indent: 1.4em; }
-div.foreword { margin: 1.5em 1.5em; }
+h1.unlisted { font-size: 0; line-height: 0; height: 0; margin: 0; }
+div.foreword { margin: 2em 1.5em; }
 div.foreword p { text-align: center; font-style: italic; text-indent: 0; margin: 0.15em 0; }
 div.foreword p.attribution { margin-top: 1.3em; font-size: 0.9em; }
 div.cite { text-align: center; font-size: 0.8em; color: #666; margin: 0.2em 0 1.1em; }
